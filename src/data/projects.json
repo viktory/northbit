@@ -1,0 +1,54 @@
+{
+  "hero": [
+    {
+      "id": "proj-01",
+      "title": "Cloud-Native Payments",
+      "narrative": [
+        { "label": "The Mission", "content": "Building a resilient, multi-region payment processor handling $2B+ in annual volume with zero downtime requirements." },
+        { "label": "Key Achievement", "content": "99.999% Availability achieved during the peak holiday season with 10x traffic spike." }
+      ],
+      "tech": ["Go", "Kafka", "AWS"]
+    },
+    {
+      "id": "proj-02",
+      "title": "Distributed Ledger Engine",
+      "narrative": [
+        { "label": "The Challenge", "content": "Developing a high-throughput consensus mechanism for private enterprise networks." },
+        { "label": "The Result", "content": "Reduced transaction latency by 400ms while maintaining strict causal ordering across 50 nodes." }
+      ],
+      "tech": ["Rust", "gRPC", "Kubernetess"]
+    },
+    {
+      "id": "proj-03",
+      "title": "Edge Security Mesh",
+      "narrative": [
+        { "label": "The Problem", "content": "Securing sensitive data flows at the network edge for a global logistics fleet." },
+        { "label": "The Solution", "content": "Implemented a Zero Trust architecture using eBPF for deep packet inspection with minimal overhead." }
+      ],
+      "tech": ["C++", "eBPF", "Linux Kernel"]
+    }
+  ],
+  "archive": [
+    {
+      "id": "proj-04",
+      "title": "Real-time Analytics Engine",
+      "mission": "Designing a low-latency data pipeline to ingest 1M events/sec.",
+      "outcome": "-85% reduction in compute costs by migrating heavy processing from Python to Rust.",
+      "tech": ["Rust", "ClickHouse", "Wasm"]
+    },
+    {
+      "id": "proj-05",
+      "title": "ML Model Orchestrator",
+      "mission": "Automating the deployment and monitoring of 500+ micro-models.",
+      "outcome": "Standardized the MLOps pipeline, reducing deployment time from days to minutes.",
+      "tech": ["Python", "PyTorch", "Terraform"]
+    },
+    {
+      "id": "proj-06",
+      "title": "Core Banking API Gateway",
+      "mission": "Modernizing legacy SOAP interfaces for mobile banking consumers.",
+      "outcome": "Unified 15 legacy services under a single GraphQL gateway with strict rate limiting.",
+      "tech": ["Node.js", "GraphQL", "Redis"]
+    }
+  ]
+}

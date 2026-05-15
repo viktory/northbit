@@ -1,0 +1,15 @@
+{
+  "degree": {
+    "title": "B.Sc. in Computer Science & Engineering",
+    "school": "Technical University of Excellence",
+    "period": "2010 — 2014"
+  },
+  "certifications": [
+    { "id": "cert-01", "name": "AWS Solutions Architect", "provider": "Amazon Web Services", "ref": "ID: AMZN-001" },
+    { "id": "cert-02", "name": "CKAD: Certified Kubernetes Application Developer", "provider": "CNCF", "ref": "ID: K8S-442" },
+    { "id": "cert-03", "name": "Professional Scrum Master", "provider": "Scrum.org", "ref": "ID: PSM-991" },
+    { "id": "cert-04", "name": "Google Cloud Professional Architect", "provider": "Google Cloud", "ref": "ID: GCP-102" },
+    { "id": "cert-05", "name": "MongoDB Certified Developer", "provider": "MongoDB University", "ref": "ID: MDB-776" },
+    { "id": "cert-06", "name": "Meta Frontend Lead Program", "provider": "Meta", "ref": "ID: META-042" }
+  ]
+}

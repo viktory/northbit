@@ -1,0 +1,63 @@
+{
+  "hero": [
+    {
+      "id": "exp-01",
+      "company": "Northbit",
+      "role": "Staff Software Engineer",
+      "period": "2022 — PRESENT",
+      "narrative": [
+        { "label": "01 / The Mission", "content": "Architecting high-frequency trading infrastructure and scaling developer productivity for global distributed teams." },
+        { "label": "02 / Strategic Impact", "content": "Modernized core trading systems by decomposing legacy monoliths into 12 multi-region microservices, improving system resilience by 30%." },
+        { "label": "03 / Engineering Productivity", "content": "Pioneered AI-assisted refactoring workflows and custom CLI tools, reducing cycle time and boosting deployment frequency by 40%." }
+      ]
+    },
+    {
+      "id": "exp-02",
+      "company": "Linear",
+      "role": "Senior Frontend Engineer",
+      "period": "2020 — 2022",
+      "narrative": [
+        { "label": "01 / Performance", "content": "Led the overhaul of the client-side state management system, achieving sub-100ms interaction latency across the entire application." },
+        { "label": "02 / Design Systems", "content": "Developed a custom motion-first component library that reduced bundle size by 25% while introducing physics-based interaction models." },
+        { "label": "03 / Product Strategy", "content": "Spearheaded the 'Mobile First' initiative, ensuring parity between desktop and mobile web experiences for power users." }
+      ]
+    },
+    {
+      "id": "exp-03",
+      "company": "Stripe",
+      "role": "Full Stack Engineer",
+      "period": "2019 — 2020",
+      "narrative": [
+        { "label": "01 / API Design", "content": "Refined the checkout integration flow, simplifying the developer experience for over 50k active merchants globally." },
+        { "label": "02 / Reliability", "content": "Implemented automated chaos engineering tests for the payments pipeline, identifying and fixing 15+ critical edge-case failure modes." },
+        { "label": "03 / Globalization", "content": "Expanded payment method support for 5 new emerging markets, including local compliance and tax calculation logic." }
+      ]
+    }
+  ],
+  "archive": [
+    {
+      "id": "exp-04",
+      "company": "Google",
+      "role": "Software Engineer",
+      "period": "2017 — 2019",
+      "mission": "Optimized search indexing performance and internal observability tooling for large-scale distributed systems.",
+      "outcome": "Reduced p99 latency for search queries by 12% via distributed caching optimizations and predictive pre-fetching algorithms."
+    },
+    {
+      "id": "exp-05",
+      "company": "Meta",
+      "role": "Software Engineering Intern",
+      "period": "2016 — 2017",
+      "mission": "Developed experimental internal tools for real-time video stream analysis and content moderation.",
+      "outcome": "Improved automated flagging accuracy by 8% using advanced computer vision heuristics."
+    },
+    {
+      "id": "exp-06",
+      "company": "Y Combinator (W16)",
+      "role": "Founding Engineer",
+      "period": "2015 — 2016",
+      "mission": "Built the MVP for a decentralized finance platform, handling everything from smart contract logic to frontend UI.",
+      "outcome": "Successfully launched and scaled to $2M in TVL within the first 6 months post-demo day."
+    }
+  ]
+}

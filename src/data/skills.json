@@ -1,0 +1,26 @@
+[
+  {
+    "id": "01",
+    "category": "Leadership",
+    "title": "Defining Frontend Architecture, Modernizing Monorepos, and Scaling Design Systems.",
+    "pills": ["Technical Leadership", "Developer Experience (DX)", "Engineering Productivity"]
+  },
+  {
+    "id": "02",
+    "category": "Core Stack",
+    "title": "Deep Expertise in React, TypeScript, and Redux.",
+    "metadata": "Playwright, Jest, Testing Library, WCAG Accessibility."
+  },
+  {
+    "id": "03",
+    "category": "AI & Tooling",
+    "title": "Leveraging GitHub Copilot and Cursor for AI-assisted Refactoring & Workflow.",
+    "pills": ["MCP Integrations", "Automation"]
+  },
+  {
+    "id": "04",
+    "category": "Systems",
+    "title": "Full-Stack via Node.js, PHP, and GraphQL.",
+    "metadata": "PostgreSQL, Redis, RabbitMQ, Elasticsearch."
+  }
+]
