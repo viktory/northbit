@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "components": {
+      "signature": "b71655723863c903b03b7537430d731c",
+      "file": true
+    }
+  }
+}

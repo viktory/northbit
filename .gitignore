@@ -41,3 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 .idea
+.swc
+
+.superpowers
+docs/superpowers
+
+.yalc

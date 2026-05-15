@@ -2,21 +2,35 @@
 
 @theme {
   --color-substrate: #FDFBF7;
+  --color-ink: #111111;
   --color-accent: #FF2A2A;
-  --font-heading: 'Cabinet Grotesk', 'Inter', sans-serif;
+  --color-surface: #FFFFFF;
+  --color-border: #E4E4E7;
+  --color-muted: #F1F1EF;
+  --color-caption: #71717A;
+  
+  --color-success: #10B981;
+  --color-info: #0EA5E9;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --font-heading: 'Cabinet Grotesk', 'Satoshi', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 :root {
   --background: var(--color-substrate);
-  --foreground: #111111;
+  --foreground: var(--color-ink);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .scroll-indicator {
@@ -28,4 +42,25 @@ body {
   background: var(--color-accent);
   transform-origin: 0%;
   z-index: 100;
+}
+
+/* Base Headings - Editorial Standard */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
 }

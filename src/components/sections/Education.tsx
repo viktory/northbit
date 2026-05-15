@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Certificate, GraduationCap, SealCheck } from "@phosphor-icons/react";
@@ -12,9 +12,16 @@ import educationData from "@/data/education.json";
  */
 export default function Education() {
   const [activeCert, setActiveCert] = useState(educationData.certifications[0]);
+  const [, startTransition] = useTransition();
+
+  const handleMouseEnter = (cert: typeof educationData.certifications[0]) => {
+    startTransition(() => {
+      setActiveCert(cert);
+    });
+  };
 
   return (
-    <section className="py-24 md:py-40 max-w-[1400px] mx-auto px-6 lg:px-12 overflow-hidden">
+    <section id="education" className="py-24 md:py-40 max-w-[1400px] mx-auto px-6 lg:px-12 overflow-hidden">
       <SectionLabel index="05">Education & Recognition</SectionLabel>
 
       {/* University Degree: Cinematic Hero */}
@@ -67,7 +74,8 @@ export default function Education() {
             {educationData.certifications.map((cert, idx) => (
               <motion.button
                 key={cert.id}
-                onMouseEnter={() => setActiveCert(cert)}
+                onMouseEnter={() => handleMouseEnter(cert)}
+                aria-label={`View details for ${cert.name}`}
                 className="group w-full flex items-center text-left py-6 border-b border-zinc-50 transition-colors"
               >
                 <div className="flex items-center gap-8 w-full">
@@ -94,41 +102,41 @@ export default function Education() {
           </div>
         </div>
 
-        {/* Right Side: Sticky Focus Area */}
         <div className="hidden lg:block">
           <div className="sticky top-40 h-[500px] flex items-center justify-center">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCert.id}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 1.1, y: -20 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full max-w-[440px]"
-              >
+              {activeCert ? (
+                <motion.div
+                  key={activeCert.id}
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.1, y: -20 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full max-w-[440px]"
+                >
                 <div className="bg-zinc-50/50 p-2 rounded-[3rem] ring-1 ring-zinc-100/50 backdrop-blur-sm relative">
-                  <div className="bg-white p-12 rounded-[calc(3rem-0.5rem)] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-zinc-100 flex flex-col items-center text-center">
-                    <div className="w-24 h-24 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-8">
-                      <SealCheck size={48} weight="thin" className="text-zinc-900" />
+                  <div className="bg-white p-8 md:p-12 rounded-[calc(3rem-0.5rem)] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-zinc-100 flex flex-col items-center text-center">
+                    <div className="w-16 h-16 md:w-24 h-24 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-6 md:mb-8">
+                      <SealCheck size={40} weight="thin" className="text-zinc-900" />
                     </div>
                     
-                    <div className="space-y-4 mb-8">
-                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
+                    <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
+                      <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
                         Verification Record
                       </p>
-                      <h6 className="text-2xl font-medium tracking-tight text-zinc-900">
+                      <h6 className="text-xl md:text-2xl font-medium tracking-tight text-zinc-900">
                         {activeCert.name}
                       </h6>
-                      <p className="text-zinc-500 text-sm">
+                      <p className="text-zinc-500 text-xs md:text-sm">
                         Authenticated by {activeCert.provider}
                       </p>
                     </div>
 
-                    <div className="pt-8 border-t border-zinc-50 w-full">
-                      <span className="text-[10px] font-mono tracking-widest text-zinc-300 block mb-2">
+                    <div className="pt-6 md:pt-8 border-t border-zinc-50 w-full">
+                      <span className="text-[9px] md:text-[10px] font-mono tracking-widest text-zinc-300 block mb-2">
                         CREDENTIAL_ID
                       </span>
-                      <code className="text-[11px] font-mono text-zinc-400 bg-zinc-50 px-3 py-1.5 rounded-full border border-zinc-100">
+                      <code className="text-[10px] md:text-[11px] font-mono text-zinc-400 bg-zinc-50 px-3 py-1.5 rounded-full border border-zinc-100">
                         {activeCert.ref}
                       </code>
                     </div>
@@ -139,6 +147,7 @@ export default function Education() {
                   </div>
                 </div>
               </motion.div>
+              ) : null}
             </AnimatePresence>
           </div>
         </div>

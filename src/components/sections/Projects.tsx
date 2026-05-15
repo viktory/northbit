@@ -29,6 +29,8 @@ const ProjectArchiveItem = ({ project }: { project: ArchiveProject }) => {
     <div className="border-t border-zinc-200 py-8 first:border-t-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close project details" : "Open project details"}
+        aria-expanded={isOpen}
         className="group flex w-full items-center justify-between text-left focus:outline-none"
       >
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-12">
@@ -45,7 +47,7 @@ const ProjectArchiveItem = ({ project }: { project: ArchiveProject }) => {
         </div>
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          transition={{ type: 'spring', stiffness: 100, damping: 20 }}
           className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-100 bg-zinc-50 transition-colors group-hover:bg-zinc-100"
         >
           <Plus size={20} className="text-zinc-500" />
@@ -53,7 +55,7 @@ const ProjectArchiveItem = ({ project }: { project: ArchiveProject }) => {
       </button>
 
       <AnimatePresence>
-        {isOpen && (
+        {isOpen ? (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
@@ -76,7 +78,7 @@ const ProjectArchiveItem = ({ project }: { project: ArchiveProject }) => {
               </div>
             </div>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   );
@@ -85,28 +87,28 @@ const ProjectArchiveItem = ({ project }: { project: ArchiveProject }) => {
 export const Projects = () => {
   return (
     <section id="projects" className="relative bg-white py-24 md:py-40">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-12">
+      <div className="mx-auto max-w-[1400px] px-4 md:px-12">
         <SectionLabel index="04">Projects</SectionLabel>
 
-        <div className="mt-24 space-y-40 md:mt-32">
+        <div className="mt-16 md:mt-32 space-y-32 md:space-y-40">
           {/* Hero Projects - Pinned Narrative */}
-          <div className="space-y-60">
+          <div className="space-y-40 md:space-y-60">
             {projectsData.hero.map((project: HeroProject) => (
-              <div key={project.id} className="grid grid-cols-1 items-start gap-12 md:grid-cols-12 md:gap-24">
+              <div key={project.id} className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-24">
                 {/* Sticky Left Column */}
-                <div className="md:sticky md:top-32 md:col-span-5">
-                  <div className="space-y-8">
-                    <div className="flex flex-wrap gap-3">
+                <div className="lg:sticky lg:top-32 lg:col-span-5">
+                  <div className="space-y-6 md:space-y-8">
+                    <div className="flex flex-wrap gap-2 md:gap-3">
                       {project.tech.map((t) => (
                         <span key={t} className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase">
                           {t}
                         </span>
                       ))}
                     </div>
-                    <h3 className="text-4xl font-medium leading-[1.1] tracking-tighter text-zinc-900 md:text-6xl">
+                    <h3 className="text-3xl font-medium leading-[1.1] tracking-tighter text-zinc-900 lg:text-6xl">
                       {project.title}
                     </h3>
-                    <div className="inline-flex items-center gap-2 border-b border-zinc-900 pb-1 font-mono text-xs font-medium tracking-tight text-zinc-900 transition-colors hover:border-zinc-400 hover:text-zinc-500">
+                    <div className="inline-flex items-center gap-2 border-b border-zinc-900 pb-1 font-mono text-[10px] md:text-xs font-medium tracking-tight text-zinc-900 transition-colors hover:border-zinc-400 hover:text-zinc-500">
                       TECHNICAL SPEC
                       <ArrowUpRight size={14} />
                     </div>
@@ -114,15 +116,16 @@ export const Projects = () => {
                 </div>
 
                 {/* Narrative Right Column */}
-                <div className="md:col-span-7">
-                  <div className="space-y-16">
+                <div className="lg:col-span-7">
+                  <div className="space-y-12 md:space-y-16">
                     {project.narrative.map((item, idx) => (
-                      <NarrativeBlock
-                        key={idx}
-                        label={item.label}
-                      >
-                        {item.content}
-                      </NarrativeBlock>
+                      <div key={idx} className="last:mb-0 mb-32 md:mb-48 lg:mb-[300px]">
+                        <NarrativeBlock
+                          label={item.label}
+                        >
+                          {item.content}
+                        </NarrativeBlock>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -131,10 +134,10 @@ export const Projects = () => {
           </div>
 
           {/* Archive - Accordion */}
-          <div className="mt-60">
-            <div className="mb-16 flex items-baseline justify-between border-b border-zinc-100 pb-10">
-              <h3 className="text-3xl font-medium tracking-tight text-zinc-900">Project Archive</h3>
-              <span className="font-mono text-xs text-zinc-400 uppercase">
+          <div className="mt-40 md:mt-60">
+            <div className="mb-10 md:mb-16 flex items-baseline justify-between border-b border-zinc-100 pb-6 md:pb-10">
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900">Project Archive</h3>
+              <span className="font-mono text-[10px] md:text-xs text-zinc-400 uppercase">
                 {projectsData.archive.length} Selected Artifacts
               </span>
             </div>

@@ -23,8 +23,8 @@ const itemVariants: Variants = {
     y: 0,
     transition: {
       type: "spring",
-      stiffness: 70,
-      damping: 15,
+      stiffness: 100,
+      damping: 20,
     },
   },
 };
@@ -73,7 +73,7 @@ const HighlightText = ({ text }: { text: string }) => {
  */
 export function Skills() {
   return (
-    <section className="py-32 md:py-48 px-6 md:px-12 bg-[#FDFBF7] overflow-hidden">
+    <section id="skills" className="py-32 md:py-48 px-6 md:px-12 bg-[#FDFBF7] overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <SectionLabel index="02">Expertise</SectionLabel>
 
@@ -82,37 +82,37 @@ export function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-40"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 md:gap-x-12 lg:gap-y-40"
         >
           {skillsData.map((skill, index) => {
-            // Asymmetric grid positioning for the Typography Wall effect
+            // Refined asymmetric grid for better tablet/mobile balance
             const gridClasses = [
-              "md:col-span-8 md:col-start-1",
-              "md:col-span-7 md:col-start-6",
-              "md:col-span-9 md:col-start-1",
-              "md:col-span-6 md:col-start-5",
+              "lg:col-span-8 lg:col-start-1",
+              "lg:col-span-7 lg:col-start-6",
+              "lg:col-span-9 lg:col-start-1",
+              "lg:col-span-6 lg:col-start-5",
             ];
 
             return (
               <motion.div
                 key={skill.id}
                 variants={itemVariants}
-                className={`${gridClasses[index % gridClasses.length]} group relative`}
+                className={`col-span-1 ${gridClasses[index % gridClasses.length]} group relative`}
               >
-                <div className="flex flex-col gap-6 md:gap-8">
+                <div className="flex flex-col gap-4 md:gap-8">
                   {/* Category Header */}
                   <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-mono text-[#888] tabular-nums tracking-widest">
+                    <span className="text-[9px] md:text-[10px] font-mono text-[#888] tabular-nums tracking-widest">
                       ({skill.id})
                     </span>
-                    <span className="h-[1px] w-8 bg-[#DDD] group-hover:w-16 group-hover:bg-[#FF2A2A] transition-all duration-700 ease-[0.16,1,0.3,1]" />
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-black text-[#111]">
+                    <span className="h-[1px] w-6 md:w-8 bg-[#DDD] group-hover:w-12 md:group-hover:w-16 group-hover:bg-[#FF2A2A] transition-all duration-700 ease-[0.16,1,0.3,1]" />
+                    <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-[#111]">
                       {skill.category}
                     </span>
                   </div>
 
                   {/* Massive Typography Headline */}
-                  <h3 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tighter text-[#111] max-w-[12ch] md:max-w-none">
+                  <h3 className="text-[clamp(1.75rem,6vw,6rem)] font-black leading-[0.95] md:leading-[0.9] tracking-tighter text-[#111] max-w-[15ch] md:max-w-none">
                     <HighlightText text={skill.title} />
                   </h3>
 
