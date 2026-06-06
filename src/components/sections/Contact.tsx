@@ -27,7 +27,7 @@ export const Contact = () => {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="text-[clamp(2.5rem,8vw,8rem)] font-black leading-[0.9] tracking-tighter text-zinc-900">
-                Let's Build <br className="hidden md:block" /> Together.
+                Let&apos;s Build <br className="hidden md:block" /> Together.
               </h2>
               
               <div className="mt-8 md:mt-16 lg:mt-24">

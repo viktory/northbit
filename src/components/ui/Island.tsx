@@ -13,14 +13,15 @@ interface IslandProps {
  */
 export function Island({ children, className = "" }: IslandProps) {
   return (
-    <div className={`bg-black/5 p-1.5 rounded-[2rem] ring-1 ring-black/5 ${className}`}>
+    <div className={`bg-white/5 p-1.5 rounded-full ring-1 ring-white/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden group ${className}`}>
+      {/* Subtle Refraction Border */}
+      <div className="absolute inset-0 border border-white/20 rounded-full pointer-events-none z-20" />
+      
       <motion.div 
-        className="bg-surface rounded-[calc(2rem-0.375rem)] p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] shadow-sm relative overflow-hidden"
+        className="bg-zinc-900/50 rounded-full py-6 px-12 relative overflow-hidden"
         whileHover={{ scale: 1.005 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
-        {/* Subtle Refraction Border */}
-        <div className="absolute inset-0 border border-white/40 rounded-[inherit] pointer-events-none" />
         <div className="relative z-10">
           {children}
         </div>
