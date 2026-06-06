@@ -117,8 +117,8 @@ const NavLinkItem = React.memo(({
       px-3 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider md:tracking-widest 
       transition-all duration-300 active:scale-95 whitespace-nowrap
       ${dark 
-        ? "text-white/50! hover:text-white!" 
-        : "text-zinc-500! hover:text-black!"}
+        ? "text-substrate/50! hover:text-accent!" 
+        : "text-caption! hover:text-accent!"}
     `}
   >
     {name}
@@ -153,11 +153,11 @@ export const Navbar = () => {
             w-full flex items-center justify-between
             px-6 md:px-12 lg:px-20 py-4
             transition-all duration-500
-            ${isOnHero ? "bg-[#050505]" : "bg-[#FDFBF7]"}
+            ${isOnHero ? "bg-ink" : "bg-substrate"}
             ${isScrolled 
               ? isOnHero 
-                ? "border-b border-white/10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]" 
-                : "border-b border-black/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
+                ? "border-b border-substrate/10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]" 
+                : "border-b border-ink/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
               : "border-b border-transparent"}
           `}
         >

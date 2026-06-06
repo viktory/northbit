@@ -23,7 +23,7 @@ export function LogoCarousel() {
         {[...LOGOS, ...LOGOS].map((logo, index) => (
           <span 
             key={index} 
-            className="font-black text-xs tracking-[0.4em] text-white/30 hover:text-white/100 transition-colors cursor-default"
+            className="font-black text-xs tracking-[0.4em] text-substrate/30 hover:text-substrate/100 transition-colors cursor-default"
           >
             {logo}
           </span>
