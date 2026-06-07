@@ -5,11 +5,11 @@ describe('LogoCarousel', () => {
   it('renders all logos twice for seamless loop', () => {
     render(<LogoCarousel />)
     
-    // Each logo should appear twice
-    const logos = ["GOOGLE", "STRIPE", "META", "NETFLIX", "APPLE"]
+    const logos = ["Medallia", "Daytrip", "HelpCrunch", "SoftServe", "GreenIce"]
     
     logos.forEach(logo => {
-      const elements = screen.getAllByText(logo)
+      // Check by title attribute which we added to the div wrapper
+      const elements = screen.getAllByTitle(logo)
       expect(elements).toHaveLength(2)
     })
   })
