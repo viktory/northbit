@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 interface IslandProps {
   children: React.ReactNode;
   className?: string;
@@ -17,15 +15,13 @@ export function Island({ children, className = "" }: IslandProps) {
       {/* Subtle Refraction Border */}
       <div className="absolute inset-0 border border-substrate/20 rounded-full pointer-events-none z-20" />
       
-      <motion.div 
+      <div 
         className="bg-black/40 rounded-full py-6 px-12 relative overflow-hidden"
-        whileHover={{ scale: 1.005 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
         <div className="relative z-10">
           {children}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

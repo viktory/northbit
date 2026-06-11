@@ -46,23 +46,6 @@ export function Hero() {
           </Island>
         </motion.div>
       </div>
-      
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
-        transition={{ delay: 1.5, duration: 1.5 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
-      >
-        <span className="text-[9px] uppercase font-black tracking-[0.4em] text-substrate">
-          Scroll
-        </span>
-        <motion.div 
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-12 bg-gradient-to-b from-substrate to-transparent"
-        />
-      </motion.div>
     </section>
   );
 }

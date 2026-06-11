@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -15,6 +16,8 @@ const LOGOS = [
  * LogoCarousel: An infinite horizontal marquee for brand trust.
  */
 export function LogoCarousel() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <div className="w-full overflow-hidden">
       <motion.div 
@@ -30,15 +33,17 @@ export function LogoCarousel() {
         {[...LOGOS, ...LOGOS].map((logo, index) => (
           <div 
             key={index} 
-            className="transition-all duration-300 cursor-default opacity-30 hover:opacity-100"
+            className="cursor-default"
             title={logo.name}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
             <Image 
               src={logo.src} 
               alt={logo.name} 
               width={logo.width} 
               height={logo.height}
-              className="h-6 w-auto brightness-0 invert"
+              className={`h-6 w-auto transition-all duration-500 ${hoveredIndex === index ? 'opacity-100 brightness-100 invert-0' : 'opacity-40 brightness-0 invert'}`}
             />
           </div>
         ))}
