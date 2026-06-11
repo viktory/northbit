@@ -13,4 +13,16 @@ describe('LogoCarousel', () => {
       expect(elements).toHaveLength(2)
     })
   })
+
+  it('applies correct height and margin-top to each logo image', () => {
+    render(<LogoCarousel />)
+    
+    // Medallia has height 24, top undefined -> marginTop 0
+    const medallia = screen.getAllByAltText("Medallia")[0]
+    expect(medallia).toHaveStyle({ height: '24px', marginTop: '0px' })
+    
+    // Daytrip has height 26, top 2 -> marginTop 2
+    const daytrip = screen.getAllByAltText("Daytrip")[0]
+    expect(daytrip).toHaveStyle({ height: '26px', marginTop: '2px' })
+  })
 })
