@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Link } from "components";
 
 // --- Types ---
@@ -27,16 +27,35 @@ const SCROLL_OFFSET = 100;
 // --- Hooks ---
 
 /**
- * Manages scroll-related state and interactions.
+ * Manages scroll and section detection.
  */
 const useNavbarScroll = () => {
   const { scrollY, scrollYProgress } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOnHero, setIsOnHero] = useState(true);
 
   useEffect(() => {
-    return scrollY.on("change", (latest) => {
+    // Scroll threshold for border/shadow
+    const unsubScroll = scrollY.on("change", (latest) => {
       setIsScrolled(latest > SCROLL_THRESHOLD);
     });
+
+    // Intersection observer for Hero section
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // We consider we are "on Hero" if it's mostly visible
+        setIsOnHero(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Adjust threshold as needed
+    );
+
+    const heroSection = document.getElementById("hero");
+    if (heroSection) observer.observe(heroSection);
+
+    return () => {
+      unsubScroll();
+      if (heroSection) observer.unobserve(heroSection);
+    };
   }, [scrollY]);
 
   const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -51,39 +70,7 @@ const useNavbarScroll = () => {
     }
   }, []);
 
-  return { scrollY, scrollYProgress, isScrolled, scrollToSection };
-};
-
-/**
- * Computes Liquid Glass styling based on scroll position.
- */
-const useNavbarStyles = (scrollY: MotionValue<number>) => {
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(253, 251, 247, 0)", "rgba(253, 251, 247, 0.7)"]
-  );
-  
-  const backdropFilter = useTransform(
-    scrollY,
-    [0, 100],
-    ["blur(0px)", "blur(12px)"]
-  );
-
-  const boxShadow = useTransform(
-    scrollY,
-    [0, 100],
-    [
-      "0 0 0 0 rgba(0,0,0,0)",
-      "0 20px 40px -15px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.1)"
-    ]
-  );
-
-  return useMemo(() => ({
-    backgroundColor,
-    backdropFilter,
-    boxShadow,
-  }), [backgroundColor, backdropFilter, boxShadow]);
+  return { scrollY, scrollYProgress, isScrolled, isOnHero, scrollToSection };
 };
 
 // --- Sub-components ---
@@ -114,17 +101,25 @@ ScrollIndicator.displayName = "ScrollIndicator";
 const NavLinkItem = React.memo(({ 
   name, 
   href, 
-  onClick 
+  onClick,
+  dark
 }: { 
   name: string; 
   href: string; 
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void 
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  dark: boolean;
 }) => (
   <Link
     href={href}
     onClick={(e) => onClick(e, href)}
     underline="none"
-    className="px-3 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider md:tracking-widest text-zinc-600! hover:text-accent! transition-all duration-300 active:scale-95 whitespace-nowrap"
+    className={`
+      px-3 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-wider md:tracking-widest 
+      transition-all duration-300 active:scale-95 whitespace-nowrap
+      ${dark 
+        ? "text-substrate/50! hover:text-accent!" 
+        : "text-caption! hover:text-accent!"}
+    `}
   >
     {name}
   </Link>
@@ -134,12 +129,10 @@ NavLinkItem.displayName = "NavLinkItem";
 // --- Main Component ---
 
 /**
- * Global Navbar: Floating Liquid Glass Pill.
- * Implements Rule 4: Liquid Glass Refraction.
+ * Global Navbar: Solid surface that adapts to section.
  */
 export const Navbar = () => {
-  const { scrollY, isScrolled, scrollToSection } = useNavbarScroll();
-  const styles = useNavbarStyles(scrollY);
+  const { isScrolled, isOnHero, scrollToSection } = useNavbarScroll();
 
   return (
     <>
@@ -155,13 +148,17 @@ export const Navbar = () => {
             damping: 20,
             delay: 0.2
           }}
-          style={styles}
           className={`
             pointer-events-auto
             w-full flex items-center justify-between
             px-6 md:px-12 lg:px-20 py-4
-            border-b transition-colors duration-500
-            ${isScrolled ? "border-zinc-200/50" : "border-transparent"}
+            transition-all duration-500
+            ${isOnHero ? "bg-ink" : "bg-substrate"}
+            ${isScrolled 
+              ? isOnHero 
+                ? "border-b border-substrate/10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]" 
+                : "border-b border-ink/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]"
+              : "border-b border-transparent"}
           `}
         >
           {/* Support for potential Logo here */}
@@ -175,6 +172,7 @@ export const Navbar = () => {
                 name={link.name}
                 href={link.href}
                 onClick={scrollToSection}
+                dark={isOnHero}
               />
             ))}
           </div>
