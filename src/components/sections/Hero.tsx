@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Island } from "@/components/ui/Island";
 import { LogoCarousel } from "@/components/ui/LogoCarousel";
 
 export function Hero() {
@@ -41,9 +40,7 @@ export function Hero() {
           transition={{ delay: 0.8, type: "spring", stiffness: 100, damping: 20 }}
           className="w-full max-w-3xl"
         >
-          <Island>
-            <LogoCarousel />
-          </Island>
+          <LogoCarousel />
         </motion.div>
       </div>
     </section>

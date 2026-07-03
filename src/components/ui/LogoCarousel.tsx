@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { Carousel } from "components";
 
 const LOGOS = [
   { name: "Medallia", src: "/logos/medallia.svg", width: 107, height: 24 },
@@ -13,42 +13,36 @@ const LOGOS = [
 ];
 
 /**
- * LogoCarousel: An infinite horizontal marquee for brand trust.
+ * LogoCarousel: An infinite horizontal marquee for brand trust,
+ * powered by the Carousel component from the components library.
  */
 export function LogoCarousel() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="w-full overflow-hidden">
-      <motion.div 
-        className="flex items-center whitespace-nowrap gap-24 w-max"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: 30,
-          ease: "linear",
-          repeat: Infinity
-        }}
-      >
-        {/* Double the logos for seamless loop */}
-        {[...LOGOS, ...LOGOS].map((logo, index) => (
-          <div 
-            key={index} 
-            className="cursor-default"
-            title={logo.name}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            <Image 
-              src={logo.src} 
-              alt={logo.name} 
-              width={logo.width} 
-              height={logo.height}
-              style={{ height: logo.height, marginTop: logo.top ?? 0 }}
-              className={`w-auto transition-all duration-500 ${hoveredIndex === index ? 'opacity-100 brightness-100 invert-0' : 'opacity-40 brightness-0 invert'}`}
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
+    <Carousel 
+      speed={30}
+      fadeEdges={true}
+      innerClassName="gap-12 [&>div]:gap-12 [&>div]:items-center"
+    >
+      {LOGOS.map((logo, index) => (
+        <div 
+          key={index} 
+          className="cursor-default"
+          title={logo.name}
+          onMouseEnter={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          <Image 
+            src={logo.src} 
+            alt={logo.name} 
+            width={logo.width} 
+            height={logo.height}
+            style={{ height: logo.height, marginTop: logo.top ?? 0 }}
+            className={`w-auto transition-all duration-500 ${hoveredIndex === index ? 'opacity-100 brightness-100 invert-0' : 'opacity-40 brightness-0 invert'}`}
+          />
+        </div>
+      ))}
+    </Carousel>
   );
 }

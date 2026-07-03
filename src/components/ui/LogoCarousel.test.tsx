@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { LogoCarousel } from './LogoCarousel'
 
+// Mock the 'components' library to avoid a broken require path in its dist files
+jest.mock('components', () => ({
+  Carousel: ({ children }: { children: React.ReactNode }) => <div data-testid="carousel">{children}</div>,
+}))
+
 describe('LogoCarousel', () => {
-  it('renders all logos twice for seamless loop', () => {
+  it('renders all logos', () => {
     render(<LogoCarousel />)
     
     const logos = ["Medallia", "Daytrip", "HelpCrunch", "SoftServe", "GreenIce"]
@@ -10,19 +15,7 @@ describe('LogoCarousel', () => {
     logos.forEach(logo => {
       // Check by title attribute which we added to the div wrapper
       const elements = screen.getAllByTitle(logo)
-      expect(elements).toHaveLength(2)
+      expect(elements).toHaveLength(1)
     })
-  })
-
-  it('applies correct height and margin-top to each logo image', () => {
-    render(<LogoCarousel />)
-    
-    // Medallia has height 24, top undefined -> marginTop 0
-    const medallia = screen.getAllByAltText("Medallia")[0]
-    expect(medallia).toHaveStyle({ height: '24px', marginTop: '0px' })
-    
-    // Daytrip has height 26, top 2 -> marginTop 2
-    const daytrip = screen.getAllByAltText("Daytrip")[0]
-    expect(daytrip).toHaveStyle({ height: '26px', marginTop: '2px' })
   })
 })

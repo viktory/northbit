@@ -6,6 +6,7 @@ jest.mock('components', () => ({
   ThemeProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="theme-provider">{children}</div>,
   THEMES: { EDITORIAL: 'editorial' },
   Link: ({ children, href }: { children: React.ReactNode, href: string }) => <a href={href}>{children}</a>,
+  Carousel: ({ children }: { children: React.ReactNode }) => <div data-testid="carousel">{children}</div>,
 }))
 
 describe('Page', () => {
