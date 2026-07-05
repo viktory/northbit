@@ -14,15 +14,14 @@ interface NavLink {
 // --- Configuration ---
 
 const NAV_LINKS: readonly NavLink[] = [
-  { name: "Work", href: "#experience" },
   { name: "Skills", href: "#skills" },
+  { name: "Work", href: "#experience" },
   { name: "History", href: "#projects" },
   { name: "Education", href: "#education" },
   { name: "Contact", href: "#contact" },
 ] as const;
 
 const SCROLL_THRESHOLD = 50;
-const SCROLL_OFFSET = 100;
 
 // --- Hooks ---
 
@@ -62,7 +61,7 @@ const useNavbarScroll = () => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const top = element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+      const top = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top,
         behavior: "smooth",
