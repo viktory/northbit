@@ -11,7 +11,7 @@ import 'components/styles.css';
 
 export default function Home() {
   return (
-    <ThemeProvider themeName={THEMES.EDITORIAL} className="w-full max-w-full overflow-x-hidden">
+    <ThemeProvider themeName={THEMES.EDITORIAL} className="w-full max-w-full">
       <Navbar/>
       <Hero/>
       <Skills/>

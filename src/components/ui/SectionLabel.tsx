@@ -10,8 +10,8 @@ interface SectionLabelProps {
 export function SectionLabel({ children, index }: SectionLabelProps) {
   return (
     <div className="mb-16">
-      <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#000] block mb-4">
-        <span className="text-[#888]">{index} {"//"}</span> {children}
+      <span className="text-[11px] font-black uppercase tracking-[0.2em] text-black block mb-4">
+        {children}
       </span>
     </div>
   );
