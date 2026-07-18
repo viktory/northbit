@@ -12,9 +12,7 @@ export interface TimelineStepProps {
 }
 
 export const TimelineStep = ({ index, isActive, expId, label, onClick }: TimelineStepProps) => {
-  const parts = label.split(' / ');
-  const numStr = parts[0] || `0${index + 1}`;
-  const titleStr = parts[1] || label;
+  const numStr = String(index + 1).padStart(2, '0');
 
   return (
     <button
@@ -52,7 +50,7 @@ export const TimelineStep = ({ index, isActive, expId, label, onClick }: Timelin
             : 'text-zinc-500 group-hover:text-zinc-950 group-hover:translate-x-0.5'
         }`}
       >
-        {titleStr}
+        {label}
       </span>
     </button>
   );
