@@ -3,14 +3,14 @@
     "category": "Engineering Team Leadership",
     "title": "Defining Frontend Architecture, Modernizing Monorepos, and Scaling Design Systems.",
     "highlights": ["Frontend Architecture", "Monorepos", "Design Systems"],
-    "gridClass": "lg:col-span-8 lg:col-start-1",
+    "gridClass": "lg:col-span-9 lg:col-start-1",
     "items": "Technical Leadership, Developer Experience (DX), Engineering Productivity"
   },
   {
     "category": "Modern Frontend Architecture",
     "title": "Deep Expertise in React, TypeScript, and Redux.",
     "highlights": ["React", "TypeScript", "Redux"],
-    "gridClass": "lg:col-span-7 lg:col-start-6",
+    "gridClass": "lg:col-span-8 lg:col-start-5",
     "items": "Playwright, Jest, Testing Library, WCAG Accessibility"
   },
   {
@@ -24,7 +24,7 @@
     "category": "Scalable Backend Systems",
     "title": "Full-Stack via Node.js, PHP, and GraphQL.",
     "highlights": ["Full-Stack", "Node.js", "GraphQL"],
-    "gridClass": "lg:col-span-6 lg:col-start-5",
+    "gridClass": "lg:col-span-8 lg:col-start-5",
     "items": "PostgreSQL, Redis, RabbitMQ, Elasticsearch"
   }
 ]

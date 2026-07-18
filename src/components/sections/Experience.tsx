@@ -4,16 +4,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from '@phosphor-icons/react';
 import { SectionLabel } from '@/components/ui/SectionLabel';
-import { NarrativeBlock } from '@/components/ui/NarrativeBlock';
 import experienceData from '@/data/experience.json';
-
-interface HeroRole {
-  id: string;
-  company: string;
-  role: string;
-  period: string;
-  narrative: { label: string; content: string }[];
-}
+import { ExperienceHeroItem, HeroRole } from './ExperienceHeroItem';
 
 interface ArchiveRole {
   id: string;
@@ -88,42 +80,14 @@ const ArchiveItem = ({ role }: { role: ArchiveRole }) => {
 export const Experience = () => {
   return (
     <section id="experience" className="relative bg-white py-24 md:py-40">
-      <div className="mx-auto max-w-[1400px] px-4 md:px-12">
+      <div className="mx-auto max-w-350 px-4 md:px-12">
         <SectionLabel index="03">Experience</SectionLabel>
 
         <div className="mt-16 md:mt-32 space-y-32 md:space-y-40">
           {/* Hero Roles - Pinned Narrative */}
           <div className="space-y-32 md:space-y-40">
             {experienceData.hero.map((exp: HeroRole) => (
-              <div key={exp.id} className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-24">
-                {/* Sticky Left Column */}
-                <div className="lg:sticky lg:top-32 lg:col-span-4">
-                  <div className="space-y-2 md:space-y-4">
-                    <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-zinc-400 uppercase">
-                      {exp.period}
-                    </span>
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-zinc-900">
-                      {exp.company}
-                    </h3>
-                    <p className="text-lg md:text-xl text-zinc-500">{exp.role}</p>
-                  </div>
-                </div>
-
-                {/* Narrative Right Column */}
-                <div className="lg:col-span-8">
-                  <div className="space-y-12 md:space-y-16">
-                    {exp.narrative.map((item, idx) => (
-                      <div key={idx} className="last:mb-0 mb-32 md:mb-48 lg:mb-[300px]">
-                        <NarrativeBlock
-                          label={item.label}
-                        >
-                          {item.content}
-                        </NarrativeBlock>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <ExperienceHeroItem key={exp.id} exp={exp} />
             ))}
           </div>
 
