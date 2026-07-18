@@ -10,12 +10,19 @@ export interface HeroRole {
   company: string;
   role: string;
   period: string;
-  narrative: { label: string; content: string }[];
+  narrative: { label: string; content: string[] }[];
 }
 
 interface ExperienceHeroItemProps {
   exp: HeroRole;
 }
+
+// The viewport region where a narrative block is considered "in focus",
+// expressed as fractions of the viewport height from the top. The
+// IntersectionObserver and the click-to-scroll target share these so a
+// clicked step reliably lands inside the detection band.
+const FOCUS_TOP = 0.35; // top of the focus band (35% down the viewport)
+const FOCUS_BOTTOM = 0.45; // inset from the bottom (band ends at 55% down)
 
 export const ExperienceHeroItem = ({ exp }: ExperienceHeroItemProps) => {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -30,19 +37,39 @@ export const ExperienceHeroItem = ({ exp }: ExperienceHeroItemProps) => {
     const narrativeBlocks = container.querySelectorAll('.narrative-block-wrapper');
     const observerOptions = {
       root: null,
-      rootMargin: '-35% 0px -45% 0px', // Focus window centered vertically
-      threshold: 0.1,
+      rootMargin: `-${FOCUS_TOP * 100}% 0px -${FOCUS_BOTTOM * 100}% 0px`, // Focus window centered vertically
+      threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
     };
+
+    // Track how much of the focus band each block covers, in pixels. Using the
+    // intersection height (not intersectionRatio, which is measured relative to
+    // each block's own height) keeps the comparison fair across blocks of
+    // different sizes, so a short block sitting fully inside the band can't
+    // outrank a tall block that fills it.
+    const coverage = new Map<number, number>();
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const indexAttr = entry.target.getAttribute('data-index');
-          if (indexAttr !== null) {
-            setActiveIdx(parseInt(indexAttr, 10));
-          }
+        const indexAttr = entry.target.getAttribute('data-index');
+        if (indexAttr === null) return;
+        coverage.set(
+          parseInt(indexAttr, 10),
+          entry.isIntersecting ? entry.intersectionRect.height : 0,
+        );
+      });
+
+      let bestIdx = -1;
+      let bestCoverage = 0;
+      coverage.forEach((height, idx) => {
+        if (height > bestCoverage) {
+          bestCoverage = height;
+          bestIdx = idx;
         }
       });
+
+      if (bestIdx !== -1) {
+        setActiveIdx(bestIdx);
+      }
     }, observerOptions);
 
     narrativeBlocks.forEach((block) => observer.observe(block));
@@ -56,15 +83,18 @@ export const ExperienceHeroItem = ({ exp }: ExperienceHeroItemProps) => {
   const handleScrollToBlock = (index: number) => {
     const block = containerRef.current?.querySelector(`[data-index="${index}"]`);
     if (block) {
-      const top = block.getBoundingClientRect().top + window.scrollY - 160;
+      // Land the block's top at the top of the observer's focus band so the
+      // clicked step is the one detected as active.
+      const top =
+        block.getBoundingClientRect().top +
+        window.scrollY -
+        window.innerHeight * FOCUS_TOP;
       window.scrollTo({
         top,
         behavior: 'smooth',
       });
     }
   };
-
-  const isPresent = exp.period.toUpperCase().includes('PRESENT');
 
   return (
     <div 
@@ -95,7 +125,7 @@ export const ExperienceHeroItem = ({ exp }: ExperienceHeroItemProps) => {
                 : 'opacity-60 saturate-50'
             }`}
           >
-            <span className="font-mono text-[9px] md:text-[10px] font-medium tracking-[0.15em] text-zinc-550 uppercase">
+            <span className="font-mono text-[9px] md:text-[10px] font-medium tracking-[0.15em] uppercase">
               {exp.period}
             </span>
           </Pill>
@@ -132,11 +162,15 @@ export const ExperienceHeroItem = ({ exp }: ExperienceHeroItemProps) => {
           {exp.narrative.map((item, idx) => (
             <div
               key={idx}
-              className="narrative-block-wrapper last:mb-0 mb-32 md:mb-48 lg:mb-75"
+              className="narrative-block-wrapper last:mb-0 mb-16 md:mb-24 lg:mb-40"
               data-index={idx}
             >
               <NarrativeBlock label={item.label}>
-                {item.content}
+                {item.content.map((paragraph, pIdx) => (
+                  <p key={pIdx} className={pIdx > 0 ? 'mt-6' : undefined}>
+                    {paragraph}
+                  </p>
+                ))}
               </NarrativeBlock>
             </div>
           ))}

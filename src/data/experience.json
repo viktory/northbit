@@ -6,9 +6,27 @@
       "role": "Staff Software Engineer",
       "period": "2022 — PRESENT",
       "narrative": [
-        { "label": "01 / The Mission", "content": "Architecting high-frequency trading infrastructure and scaling developer productivity for global distributed teams." },
-        { "label": "02 / Strategic Impact", "content": "Modernized core trading systems by decomposing legacy monoliths into 12 multi-region microservices, improving system resilience by 30%." },
-        { "label": "03 / Engineering Productivity", "content": "Pioneered AI-assisted refactoring workflows and custom CLI tools, reducing cycle time and boosting deployment frequency by 40%." }
+        {
+          "label": "The Mission",
+          "content": [
+            "Architecting high-frequency trading infrastructure and scaling developer productivity for global distributed teams.",
+            "Owning the platform roadmap end to end — from latency budgets and capacity planning to the day-to-day ergonomics of the engineers who ship on it."
+          ]
+        },
+        {
+          "label": "Strategic Impact",
+          "content": [
+            "Modernized core trading systems by decomposing legacy monoliths into 12 multi-region microservices, improving system resilience by 30%.",
+            "Introduced progressive delivery and automated rollbacks, cutting mean time to recovery from hours to under ten minutes."
+          ]
+        },
+        {
+          "label": "Engineering Productivity",
+          "content": [
+            "Pioneered AI-assisted refactoring workflows and custom CLI tools, reducing cycle time and boosting deployment frequency by 40%.",
+            "Established golden-path templates and a shared component library that onboarded new engineers to their first production change within a week."
+          ]
+        }
       ]
     },
     {
@@ -17,9 +35,27 @@
       "role": "Senior Frontend Engineer",
       "period": "2020 — 2022",
       "narrative": [
-        { "label": "01 / Performance", "content": "Led the overhaul of the client-side state management system, achieving sub-100ms interaction latency across the entire application." },
-        { "label": "02 / Design Systems", "content": "Developed a custom motion-first component library that reduced bundle size by 25% while introducing physics-based interaction models." },
-        { "label": "03 / Product Strategy", "content": "Spearheaded the 'Mobile First' initiative, ensuring parity between desktop and mobile web experiences for power users." }
+        {
+          "label": "Performance",
+          "content": [
+            "Led the overhaul of the client-side state management system, achieving sub-100ms interaction latency across the entire application.",
+            "Profiled and eliminated render bottlenecks with fine-grained reactivity, keeping the UI at a steady 60fps even on large workspaces."
+          ]
+        },
+        {
+          "label": "Design Systems",
+          "content": [
+            "Developed a custom motion-first component library that reduced bundle size by 25% while introducing physics-based interaction models.",
+            "Codified design tokens and accessibility defaults so every team inherited consistent, WCAG-compliant components for free."
+          ]
+        },
+        {
+          "label": "Product Strategy",
+          "content": [
+            "Spearheaded the 'Mobile First' initiative, ensuring parity between desktop and mobile web experiences for power users.",
+            "Partnered with design and research to ship a keyboard-driven command palette that became the primary navigation surface for most sessions."
+          ]
+        }
       ]
     },
     {
@@ -28,9 +64,27 @@
       "role": "Full Stack Engineer",
       "period": "2019 — 2020",
       "narrative": [
-        { "label": "01 / API Design", "content": "Refined the checkout integration flow, simplifying the developer experience for over 50k active merchants globally." },
-        { "label": "02 / Reliability", "content": "Implemented automated chaos engineering tests for the payments pipeline, identifying and fixing 15+ critical edge-case failure modes." },
-        { "label": "03 / Globalization", "content": "Expanded payment method support for 5 new emerging markets, including local compliance and tax calculation logic." }
+        {
+          "label": "API Design",
+          "content": [
+            "Refined the checkout integration flow, simplifying the developer experience for over 50k active merchants globally.",
+            "Drove a backwards-compatible API versioning strategy that let merchants adopt new capabilities without breaking existing integrations."
+          ]
+        },
+        {
+          "label": "Reliability",
+          "content": [
+            "Implemented automated chaos engineering tests for the payments pipeline, identifying and fixing 15+ critical edge-case failure modes.",
+            "Built idempotency and reconciliation safeguards that guaranteed exactly-once processing under retries and partial outages."
+          ]
+        },
+        {
+          "label": "Globalization",
+          "content": [
+            "Expanded payment method support for 5 new emerging markets, including local compliance and tax calculation logic.",
+            "Localized currency, formatting, and settlement flows to meet regional regulatory requirements across three continents."
+          ]
+        }
       ]
     }
   ],
