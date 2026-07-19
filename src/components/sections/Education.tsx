@@ -22,7 +22,7 @@ export default function Education() {
 
   return (
     <section id="education" className="py-24 md:py-40 max-w-[1400px] mx-auto px-6 lg:px-12 overflow-hidden">
-      <SectionLabel index="05">Education & Recognition</SectionLabel>
+      <SectionLabel>Education & Recognition</SectionLabel>
 
       {/* University Degree: Cinematic Hero */}
       <div className="mb-32 md:mb-48">

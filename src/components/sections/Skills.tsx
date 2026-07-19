@@ -4,6 +4,7 @@ import React from "react";
 import { motion, Variants } from "framer-motion";
 import skillsData from "@/data/skills.json";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { Tech } from "@/components/ui/Tech";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -55,7 +56,7 @@ export function Skills() {
   return (
     <section id="skills" className="py-32 md:py-48 px-6 md:px-12 bg-substrate overflow-hidden">
       <div className="max-w-350 mx-auto">
-        <SectionLabel index="02">Expertise</SectionLabel>
+        <SectionLabel>Expertise</SectionLabel>
 
         <motion.div
           variants={containerVariants}
@@ -84,13 +85,13 @@ export function Skills() {
                   </h3>
 
                   <div className="flex flex-col gap-4 mt-2">
-                    {skill.items && (
-                      <div className="flex items-start gap-2">
-                         <p className="font-mono text-[11px] md:text-xs text-[#666] leading-relaxed max-w-xl">
-                           {skill.items}
-                         </p>
+                    {skill.items?.length ? (
+                      <div className="flex flex-wrap gap-x-3 gap-y-1.5 max-w-xl">
+                        {skill.items.map((item) => (
+                          <Tech key={item} label={item} />
+                        ))}
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </motion.div>
