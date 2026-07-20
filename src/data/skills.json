@@ -4,27 +4,27 @@
     "title": "Defining Frontend Architecture, Modernizing Monorepos, and Scaling Design Systems.",
     "highlights": ["Frontend Architecture", "Monorepos", "Design Systems"],
     "gridClass": "lg:col-span-9 lg:col-start-1",
-    "items": "Technical Leadership, Developer Experience (DX), Engineering Productivity"
+    "items": ["Technical Leadership", "Developer Experience (DX)", "Engineering Productivity"]
   },
   {
     "category": "Modern Frontend Architecture",
     "title": "Deep Expertise in React, TypeScript, and Redux.",
     "highlights": ["React", "TypeScript", "Redux"],
     "gridClass": "lg:col-span-8 lg:col-start-5",
-    "items": "Playwright, Jest, Testing Library, WCAG Accessibility"
+    "items": ["Playwright", "Jest", "Testing Library", "WCAG Accessibility"]
   },
   {
     "category": "AI-Assisted Development Tooling",
     "title": "Leveraging GitHub Copilot and Cursor for AI-assisted Refactoring & Workflow.",
     "highlights": ["AI-assisted"],
     "gridClass": "lg:col-span-9 lg:col-start-1",
-    "items": "MCP Integrations, Automation"
+    "items": ["MCP Integrations", "Automation"]
   },
   {
     "category": "Scalable Backend Systems",
     "title": "Full-Stack via Node.js, PHP, and GraphQL.",
     "highlights": ["Full-Stack", "Node.js", "GraphQL"],
     "gridClass": "lg:col-span-8 lg:col-start-5",
-    "items": "PostgreSQL, Redis, RabbitMQ, Elasticsearch"
+    "items": ["PostgreSQL", "Redis", "RabbitMQ", "Elasticsearch"]
   }
 ]

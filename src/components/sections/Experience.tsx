@@ -9,7 +9,7 @@ export const Experience = () => {
   return (
     <section id="experience" className="relative bg-white py-24 md:py-40">
       <div className="mx-auto max-w-350 px-4 md:px-12">
-        <SectionLabel index="03">Experience</SectionLabel>
+        <SectionLabel>Experience</SectionLabel>
 
         <div className="mt-16 md:mt-32 space-y-32 md:space-y-40">
           {/* Hero Roles - Pinned Narrative */}

@@ -15,7 +15,7 @@ export const Contact = () => {
   return (
     <section id="contact" className="relative bg-white py-20 md:py-32 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12">
-        <SectionLabel index="06">Contact</SectionLabel>
+        <SectionLabel>Contact</SectionLabel>
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-24">
           {/* Left Column: Massive CTA */}

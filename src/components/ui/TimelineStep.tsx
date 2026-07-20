@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 export interface TimelineStepProps {
   index: number;
   isActive: boolean;
-  expId: string;
+  groupId: string;
   label: string;
   onClick: () => void;
 }
 
-export const TimelineStep = ({ index, isActive, expId, label, onClick }: TimelineStepProps) => {
+export const TimelineStep = ({ index, isActive, groupId, label, onClick }: TimelineStepProps) => {
   const numStr = String(index + 1).padStart(2, '0');
 
   return (
@@ -22,7 +22,7 @@ export const TimelineStep = ({ index, isActive, expId, label, onClick }: Timelin
       {/* Active Indicator Bar on the border line */}
       {isActive && (
         <motion.div
-           layoutId={`active-bar-${expId}`}
+           layoutId={`active-bar-${groupId}`}
           className="absolute left-[-25.5px] top-1/2 -translate-y-1/2 w-[3px] h-6 rounded-full"
           style={{ backgroundColor: 'var(--ui-color-accent, #ff2a2a)' }}
           transition={{
@@ -35,8 +35,8 @@ export const TimelineStep = ({ index, isActive, expId, label, onClick }: Timelin
 
       <span
         className={`font-mono text-[9px] md:text-[10px] tracking-widest uppercase transition-colors duration-300 ${
-          isActive 
-            ? 'text-accent' 
+          isActive
+            ? 'text-accent'
             : 'text-zinc-400 group-hover:text-(--ui-color-accent,#ff2a2a)'
         }`}
         style={{ color: isActive ? 'var(--ui-color-accent, #ff2a2a)' : undefined }}
